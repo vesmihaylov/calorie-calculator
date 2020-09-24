@@ -1,8 +1,11 @@
-const express = require('express');
+const express = require('express')
+const serveStatic = require('serve-static')
+const path = require('path')
 const app = express();
 
-app.use(express.static('dist'));
+app.use('/', serveStatic(path.join(__dirname, '/dist')))
 
-app.listen(3000, function () {
-    console.log('Macronutrient calculator app listening on port 3000!');
-});
+const port = process.env.PORT || 8080
+app.listen(port)
+
+console.log('Listening on port: ' + port)
